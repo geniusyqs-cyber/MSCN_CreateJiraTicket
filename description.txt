@@ -1,0 +1,34 @@
+Background
+To support business development and potential B2B institutional client outreach, we need to prepare a concise marketing presentation introducing the company background, William O’Neil investment methodology, target institutional user needs, and key MSHK product value.
+The deck should position MSHK as a methodology-backed equity research and stock screening platform. Core features may include Idea Lists / Screeners, market analysis, chart analysis, stock ratings, watchlist, model portfolio, and market commentary, which are already part of the current product scope.
+
+Objective
+Create a client-facing PowerPoint deck for B2B / institutional prospects, helping them quickly understand:
+    Company development history
+    William O’Neil investment story and CANSLIM methodology
+    Target user personas and key pain points
+    MSHK key product highlights and use cases
+    Why MSHK can support brokers, wealth advisors, and independent equity advisory teams
+
+Scope
+The PPT should include the following sections:
+Company overview and development timeline
+William O’Neil investment philosophy and CANSLIM framework introduction
+Target B2B user personas, especially brokers / wealth advisors and independent equity advisors
+Key pain points, such as scalable research output, client-facing explanation, efficient stock monitoring, and repeatable investment process
+Product highlight pages:
+    Idea Lists / TOP33 / Near Buy Point / Breakout Today
+    Screener and stock filtering
+    Market trend and industry analysis
+    Stock ratings and chart analysis
+    Watchlist and model portfolio
+    Weekly market commentary
+Suggested B2B usage scenarios:
+    Daily market briefing
+    Client advisory preparation
+    Stock idea generation
+    Watchlist monitoring
+    Research workflow standardization
+
+Deliverables
+    One client-facing PPT deck
