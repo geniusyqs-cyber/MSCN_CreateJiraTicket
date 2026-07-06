@@ -1,16 +1,23 @@
-Deliverable: Teams workflow fully replaced with new notification service; end-to-end Airflow task monitoring alert pipeline functional again; alert rules and recipients migrated completely.
+User Story Name: As system & content maintainer, I need to inspect the service status of port 80 on two internal WordPress servers, restore unavailable WordPress service, then verify all article content and site functionality completely.
+Deliverable: Port 80 service status inspection report; fully recovered WordPress website; all articles and site features validated as normal.
 
 1. Context and Background
-The original Teams workflow service has been shut down and no longer available, resulting in complete failure of the existing task monitoring alert system. Operation teams cannot receive real-time abnormal notifications for failed Airflow data tasks, which delays troubleshooting and increases the risk of undiscovered data pipeline breakdowns. We need to implement an alternative notification service to replace the retired Teams workflow as soon as possible to recover alert monitoring.
+Two internal WordPress service addresses are provided:
+http://192.168.178.39/
+http://192.168.178.57/
+Norman Jin reported that the WordPress service deployed on port 80 is currently inaccessible. After restoring the service availability, Lu Xu needs to conduct full verification on all published articles and overall site functions of WordPress. This ticket covers port inspection, service recovery and content validation work.
 
 2. Detail Requirement
-Evaluate available internal alternative notification services that support task failure alert delivery.
-Migrate all existing Airflow task monitoring alert rules, trigger conditions and recipient groups from the old Teams workflow to the new service.
-Reconfigure the pipeline to push task runtime errors, schedule failures and archive check exceptions to the new notification channel.
-Conduct full end-to-end test: simulate failed Airflow tasks and verify alert messages can be delivered to target operation staff normally.
-Document the new alert service configuration, migration steps and operation maintenance guide for future reference.
+Check and confirm the running status of port 80 on host 192.168.178.39 and 192.168.178.57:
+Verify listening process of port 80, web service process status and network access rules.
+Locate root cause for WordPress service unavailability.
+Execute repair operations to recover normal access of the WordPress service on port 80.
+After service recovery, complete full validation work for Lu Xu:
+Check the status of all WordPress published articles (content display, images, title layout, loading performance).
+Verify core website functions including login page, article browsing and page rendering.
+Record troubleshooting steps, root cause and final verification results in ticket comments.
 
 3. Actual Expectation
-The retired Teams workflow is fully replaced by a stable alternative notification service.
-Task monitoring alert service recovers completely; abnormal data task failures can trigger real-time notifications to operation teams without delay.
-All original alert logic and receiving groups are retained and work correctly on the new service.
+Port 80 service of both internal servers runs normally, WordPress site can be accessed stably.
+All WordPress articles load completely without missing content or broken images; all core website functions work as expected.
+Complete service troubleshooting and content inspection records are documented.
