@@ -20,7 +20,7 @@ if (-not $env:JIRA_EMAIL) {
 $desc = Get-Content $DescriptionFile -Raw
 
 python .\create_mscn_ticket.py `
-  --summary "Fix Financial Data Defects for HK Secondary New Stocks & Align Metrics of Dual-Listing H-Shares" `
+  --summary "Replace Discontinued Teams Workflow & Broken Task Monitoring Alert Service with Alternatives" `
   --description "$desc" `
   --type "Story" `
   --project "MSCN" `

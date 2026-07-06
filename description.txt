@@ -1,40 +1,16 @@
-Affected Product: MarketSmith Hong Kong (Ticket Ref: #16755)
-
-User Story Name: As data engineer & product analyst, I need to resolve two core HK financial data issues: missing YoY profit growth rate for A+H dual-listed secondary new stocks, and inconsistent financial/rating/industry data for stocks with different share classes of the same underlying company, to restore accurate stock screening & TOP33 ranking logic for end users.
-
-Deliverable:
-Complete quarterly YoY earnings growth rate calculation logic for A+H dual-listed secondary new stocks;
-Unified financial metrics, stock rating and industry classification for multi-share-class stocks of identical underlying firms;
-User-facing TOP33 list and financial screening filters can correctly include & evaluate these dual-listed HK stocks.
+Deliverable: Teams workflow fully replaced with new notification service; end-to-end Airflow task monitoring alert pipeline functional again; alert rules and recipients migrated completely.
 
 1. Context and Background
-User submitted feedback (#16755) regarding MarketSmith Hong Kong’s incomplete financial data for A+H dual-listed secondary new stocks:
-Many companies listed on ChiNext / STAR Market in mainland China conduct secondary fundraising in Hong Kong with strong market performance. These stocks have full quarterly financial filings on the A-share side, but their corresponding HK tickers lack quarterly YoY profit growth metrics.
-Without growth rate values:
-EPS ratings incorrectly downgrade to grade D;
-Users cannot filter stocks by year-over-year earnings growth;
-Qualified stocks fail to be included in the HK TOP33 ranking list.
-User suggests reusing matching A-share financial data to fill HK-side gaps, as they represent identical underlying businesses.
-Internal verification found two root problems:
-Data source separation: A-share EPS data comes from cninfo, HK EPS data from Juyuan. Adjusted financial report release cycles between the two markets break YoY growth calculation for certain quarters, leaving growth rate fields blank.
-Multi-share class inconsistency: For the same enterprise (e.g. Alibaba-W 09988, Alibaba-WR 89988), financial figures, stock rating scores and industry classification records are mismatched across different HK share classes.
+The original Teams workflow service has been shut down and no longer available, resulting in complete failure of the existing task monitoring alert system. Operation teams cannot receive real-time abnormal notifications for failed Airflow data tasks, which delays troubleshooting and increases the risk of undiscovered data pipeline breakdowns. We need to implement an alternative notification service to replace the retired Teams workflow as soon as possible to recover alert monitoring.
 
 2. Detail Requirement
-Resolve missing quarterly YoY profit growth rate for A+H dual-listed secondary new stocks:
-Build cross-market data alignment logic to pull complete A-share quarterly financial data for matching HK dual-listed tickers;
-Recompute accurate quarterly YoY earnings growth for HK side when native HK source data cannot support calculation;
-Ensure growth rate values persist in HK financial tables for screening and rating calculation.
-Unify data of multi-share-class HK stocks belonging to the same underlying company:
-Standardize core financial metrics (EPS, profit, revenue etc.) for identical firms with different HK stock codes (W / WR share structures);
-Synchronize stock rating results and industry classification labels across all related share class tickers of one enterprise;
-Validate downstream product logic after data repair:
-Confirm EPS rating no longer incorrectly outputs D grade due to missing growth data;
-Verify users can successfully filter dual-listed secondary new stocks by earnings YoY growth filters;
-Ensure eligible dual-listed stocks are properly captured and displayed within the HK TOP33 ranking list;
-Document cross-market financial data synchronization rules for long-term maintenance.
+Evaluate available internal alternative notification services that support task failure alert delivery.
+Migrate all existing Airflow task monitoring alert rules, trigger conditions and recipient groups from the old Teams workflow to the new service.
+Reconfigure the pipeline to push task runtime errors, schedule failures and archive check exceptions to the new notification channel.
+Conduct full end-to-end test: simulate failed Airflow tasks and verify alert messages can be delivered to target operation staff normally.
+Document the new alert service configuration, migration steps and operation maintenance guide for future reference.
 
 3. Actual Expectation
-All A+H dual-listed secondary new HK stocks have complete quarterly YoY profit growth rate data available; EPS rating results become reasonable and consistent with business fundamentals.
-Stocks with different HK share classes (W/WR) under the same company carry identical financial metrics, ratings and industry tags.
-End users can filter target dual-listed stocks via earnings growth conditions, and qualified candidates will appear normally in HK TOP33 list.
-Cross-market financial data complement mechanism is stable to prevent recurring blank growth rate issues caused by mismatched report release cycles.
+The retired Teams workflow is fully replaced by a stable alternative notification service.
+Task monitoring alert service recovers completely; abnormal data task failures can trigger real-time notifications to operation teams without delay.
+All original alert logic and receiving groups are retained and work correctly on the new service.
