@@ -2,25 +2,6 @@ param(
     [string]$DescriptionFile = ".\description.txt"
 )
 
-function Import-EnvFile {
-    param([string]$Path)
-    if (-not (Test-Path $Path)) { return }
-    foreach ($line in Get-Content $Path) {
-        $trimmed = $line.Trim()
-        if (-not $trimmed -or $trimmed.StartsWith("#")) { continue }
-        if ($trimmed -match '^(?<name>[A-Za-z_][A-Za-z0-9_]*)\s*=\s*(?<value>.*)$') {
-            $name = $Matches.name
-            $value = $Matches.value.Trim('''"')
-            if (-not [Environment]::GetEnvironmentVariable($name, "Process")) {
-                [Environment]::SetEnvironmentVariable($name, $value, "Process")
-            }
-        }
-    }
-}
-
-$envPath = Join-Path $PSScriptRoot ".env"
-Import-EnvFile -Path $envPath
-
 if (-not (Test-Path $DescriptionFile)) {
     Write-Error "Description file not found: $DescriptionFile"
     exit 1
@@ -39,7 +20,7 @@ if (-not $env:JIRA_EMAIL) {
 $desc = Get-Content $DescriptionFile -Raw
 
 python .\create_mscn_ticket.py `
-  --summary "Troubleshoot Unavailable WordPress Service on Port 80" `
+  --summary 'Fix Weekend Full Pattern Refresh Failure – Optimize Performance & Batch Submission Strategy' `
   --description "$desc" `
   --type "Story" `
   --project "MSCN" `

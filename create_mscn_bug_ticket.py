@@ -6,6 +6,13 @@ import json
 import os
 import sys
 
+if sys.platform.startswith("win"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except AttributeError:
+        pass
+
 try:
     import requests
 except ImportError:
@@ -70,18 +77,6 @@ def get_epic_link_field_id(
     return None
 
 
-def get_project_components(base_url: str, email: str, api_token: str, project_key: str) -> list[str]:
-    url = base_url.rstrip("/") + f"/rest/api/3/project/{project_key}/components"
-    response = requests.get(
-        url,
-        auth=(email, api_token),
-        headers={"Content-Type": "application/json"},
-        timeout=30,
-    )
-    response.raise_for_status()
-    return [component.get("name") for component in response.json() if component.get("name")]
-
-
 def create_issue(
     base_url: str,
     email: str,
@@ -111,14 +106,7 @@ def create_issue(
     if labels:
         fields["labels"] = parse_list(labels)
     if components:
-        requested_components = parse_list(components)
-        valid_components = get_project_components(base_url, email, api_token, project_key)
-        invalid = [name for name in requested_components if name not in valid_components]
-        if invalid:
-            raise SystemExit(
-                f"Invalid component(s): {', '.join(invalid)}. Valid components for project {project_key}: {', '.join(valid_components)}"
-            )
-        fields["components"] = [{"name": name} for name in requested_components]
+        fields["components"] = [{"name": name} for name in parse_list(components)]
     if fix_versions:
         fields["fixVersions"] = [{"name": name} for name in parse_list(fix_versions)]
     if parent:
