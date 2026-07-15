@@ -20,13 +20,13 @@ if (-not $env:JIRA_EMAIL) {
 $desc = Get-Content $DescriptionFile -Raw
 
 python .\create_mscn_ticket.py `
-  --summary 'Fix Weekend Full Pattern Refresh Failure – Optimize Performance & Batch Submission Strategy' `
+  --summary 'Research: Improve Buy Range Stock Discovery Experience' `
   --description "$desc" `
   --type "Story" `
   --project "MSCN" `
   --priority "High (migrated)" `
-  --assignee "5a0131d993915e620920fe68" `
-  --components "MSCN-DATA" `
+  --assignee "712020:54f5668e-24e9-49c7-bbfd-ed91b447070d" `
+  --components "MSCN" `
   --parent "MSCN-2738" `
   --timeout 60 `
   --retries 3

@@ -1,24 +1,5 @@
-User Story Name: As data engineer, I need to resolve the runtime error during weekend full pattern data refresh for DAG cndb.pattern, optimize pipeline performance and adjust batch submission logic to avoid repeated task failures.
-
-Deliverable: Optimized batch write strategy; performance tuning completed; pr_4 task runs successfully for weekend full pattern refresh without exceptions.
-
-1. Context and Background
-Airflow task pr_4 under DAG cndb.pattern failed during weekend full data refresh on execution date 2026-07-03.
-Full log link: http://192.168.178.43:30754/log?task_id=pr_4&dag_id=cndb.pattern&execution_date=2026-07-03T09%3A40%3A00%2B00%3A00
-The root trigger of failure is poor pipeline performance and unreasonable batch submission logic when executing full pattern data update over weekends, which leads to task timeout / database write exceptions. We need to tune execution performance and redesign batch submission rules to stabilize weekend full refresh.
-
-2. Detail Requirement
-Analyze the error log of failed pr_4 weekend full pattern refresh task, identify bottlenecks of current batch submission and performance pain points.
-Optimize batch submission strategy:
-Adjust single batch data volume, split oversized batches to reduce DB write pressure;
-Add batch interval delay or concurrency control to avoid database lock/timeout.
-Execute end-to-end performance tuning for the full pattern refresh pipeline:
-Optimize SQL query logic, index usage and data filtering steps;
-Reduce memory consumption and total execution time of the full refresh workflow.
-Re-run the weekend full pattern update workflow after optimization, verify task pr_4 completes without error.
-Document adjusted batch parameters and performance optimization points for long-term maintenance.
-
-3. Actual Expectation
-The weekend full pattern data refresh task pr_4 executes stably without runtime errors.
-Optimized batch submission strategy reduces database pressure and eliminates write exceptions caused by oversized batches.
-Overall pipeline execution performance is significantly improved for weekend full volume update scenarios.
+Background
+A retail user suggested adding a dedicated stock list showing stocks currently within the recommended buy price range, making it easier to monitor opportunities without manually checking each stock.
+This feedback reflects a common scenario among retail investors. During volatile or declining markets, users tend to become less confident and prefer more intuitive guidance on which stocks are currently actionable, rather than interpreting chart patterns individually.
+Currently, MarketSmith already supports identifying these stocks through existing pattern-related factors and chart buy zones. However, the entry point may not be sufficiently discoverable for retail users.
+Therefore, we would like to evaluate whether the current experience can be further optimized.
